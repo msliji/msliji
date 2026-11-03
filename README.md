@@ -1,5 +1,7 @@
 # 热门开源项目合集 · Trending Open Source
 
+> 🔗 **在线展示页**：https://msliji.github.io/msliji/
+
 > 收录 2026 年 10 月至 11 月 GitHub 上**涨星最快**的 3 个项目，以 **Fork** 形式归于本账号，便于学习与二次开发。
 >
 > 数据快照：2026-11-03
