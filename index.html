@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>热门开源项目合集 · Trending Open Source</title>
+<meta name="description" content="收录 2026 年 10-11 月 GitHub 上涨星最快的 3 个开源项目">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#f6f7f9;
+    --card:#ffffff;
+    --ink:#1a1d24;
+    --ink-2:#5b6474;
+    --ink-3:#8b95a7;
+    --line:#e6e9ef;
+    --accent:#5b6ef5;
+    --accent-soft:#eef0fe;
+    --star:#f5a623;
+    --radius:16px;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;overflow:hidden;
+    background:linear-gradient(135deg,#1b1f2a 0%,#242a3d 45%,#2b3350 100%);
+    color:#fff;padding:76px 0 88px;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(560px 260px at 82% 8%,rgba(91,110,245,.45),transparent 70%),
+      radial-gradient(460px 240px at 10% 92%,rgba(120,220,200,.22),transparent 70%);
+    pointer-events:none;
+  }
+  .hero .wrap{position:relative}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:#a9b4d0;border:1px solid rgba(255,255,255,.16);
+    padding:6px 14px;border-radius:999px;margin-bottom:22px;
+    background:rgba(255,255,255,.05);
+  }
+  .dot{width:6px;height:6px;border-radius:50%;background:#6ee7b7;box-shadow:0 0 0 3px rgba(110,231,183,.18)}
+  h1{font-size:clamp(30px,5vw,46px);line-height:1.18;letter-spacing:-.02em;font-weight:800}
+  h1 em{font-style:normal;background:linear-gradient(100deg,#8b9bff,#6ee7b7);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{margin-top:18px;font-size:16.5px;color:#b8c1d9;max-width:620px}
+  .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
+  .chip{
+    font-size:13px;color:#cfd6e8;background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.12);
+    padding:7px 14px;border-radius:999px;
+  }
+  .chip b{color:#fff;font-weight:700}
+
+  /* ---------- Cards ---------- */
+  .list{padding:64px 0 40px}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+  .sec-head h2{font-size:22px;letter-spacing:-.01em}
+  .sec-head p{font-size:14px;color:var(--ink-3)}
+
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;margin-bottom:18px;
+    transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 14px 34px -12px rgba(26,29,36,.16);border-color:#d6dbe8}
+  .card-top{display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap}
+  .rank{
+    flex:0 0 auto;width:38px;height:38px;border-radius:11px;
+    display:grid;place-items:center;font-weight:800;font-size:15px;
+    background:var(--accent-soft);color:var(--accent);
+  }
+  .card-title{flex:1 1 260px;min-width:0}
+  .card-title h3{font-size:19.5px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .card-title h3 a{color:var(--ink);text-decoration:none}
+  .card-title h3 a:hover{color:var(--accent)}
+  .sub{font-size:13.5px;color:var(--ink-3);margin-top:3px;word-break:break-all}
+  .stars{
+    flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;
+    font-size:14px;font-weight:700;color:#8a6100;
+    background:#fff8e6;border:1px solid #f5e2b3;
+    padding:6px 12px;border-radius:999px;
+  }
+  .desc{margin-top:16px;color:var(--ink-2);font-size:15px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .tag{font-size:12.5px;color:var(--ink-2);background:#f1f3f7;border:1px solid var(--line);padding:4px 10px;border-radius:7px}
+  .lang{display:inline-flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2)}
+  .lang i{width:9px;height:9px;border-radius:50%;display:block}
+  .foot-row{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .left-meta{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .btn{
+    display:inline-flex;align-items:center;gap:7px;
+    font-size:13.5px;font-weight:600;text-decoration:none;
+    padding:9px 16px;border-radius:9px;transition:.16s;
+  }
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:#000;transform:translateY(-1px)}
+  .btn-ghost{color:var(--ink-2);border:1px solid var(--line);background:#fff}
+  .btn-ghost:hover{border-color:#c9d0e0;color:var(--ink)}
+
+  /* ---------- Note ---------- */
+  .note{
+    background:#fff;border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:12px;padding:22px 24px;margin:26px 0 0;
+  }
+  .note h4{font-size:14.5px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .note ul{list-style:none;display:grid;gap:9px}
+  .note li{font-size:14px;color:var(--ink-2);padding-left:20px;position:relative}
+  .note li::before{content:"";position:absolute;left:4px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.55}
+
+  footer{border-top:1px solid var(--line);margin-top:48px;padding:30px 0 44px;text-align:center;color:var(--ink-3);font-size:13px}
+  footer a{color:var(--ink-2);text-decoration:none;border-bottom:1px dotted #c3cad8}
+  footer a:hover{color:var(--accent)}
+
+  @media (max-width:640px){
+    .hero{padding:56px 0 64px}
+    .card{padding:22px}
+    .foot-row{flex-direction:column;align-items:flex-start}
+    .btn{width:100%;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span>Updated 2026-11-03</div>
+    <h1>当前<em>最火</em>的三个开源项目</h1>
+    <p class="lede">按 GitHub 近 30 天新增 Star 数排序，收录涨势最猛的开源项目，Fork 归档便于学习与二次开发。</p>
+    <div class="meta">
+      <span class="chip">共 <b>3</b> 个项目</span>
+      <span class="chip">累计 <b>100.4k</b> Stars</span>
+      <span class="chip">Python · JavaScript</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap list">
+  <div class="sec-head">
+    <h2>项目列表</h2>
+    <p>按 Star 数降序 · 点击标题进入你的 Fork</p>
+  </div>
+
+  <!-- 1 -->
+  <article class="card">
+    <div class="card-top">
+      <div class="rank">1</div>
+      <div class="card-title">
+        <h3><a href="https://github.com/msliji/cleanyourtv">cleanyourtv</a></h3>
+        <div class="sub">Gathin23 / cleanyourtv</div>
+      </div>
+      <span class="stars">★ 50.9k</span>
+    </div>
+    <p class="desc">通过 Wi-Fi 连接 Android TV / Google TV，卸载预装臃肿应用完成「减负」，并把系统首页替换为接近 Apple TV 的清爽体验。</p>
+    <div class="tags">
+      <span class="tag">adb</span><span class="tag">adblock</span><span class="tag">android-tv</span><span class="tag">launcher</span>
+    </div>
+    <div class="foot-row">
+      <div class="left-meta">
+        <span class="lang"><i style="background:#3572A5"></i>Python</span>
+        <span class="lang">许可证：自定义</span>
+      </div>
+      <div class="left-meta">
+        <a class="btn btn-primary" href="https://github.com/msliji/cleanyourtv">查看仓库 →</a>
+        <a class="btn btn-ghost" href="https://github.com/Gathin23/cleanyourtv">上游原项目</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 2 -->
+  <article class="card">
+    <div class="card-top">
+      <div class="rank">2</div>
+      <div class="card-title">
+        <h3><a href="https://github.com/msliji/DeepInfer">DeepInfer</a></h3>
+        <div class="sub">deepseek-ai / DeepInfer</div>
+      </div>
+      <span class="stars">★ 25.1k</span>
+    </div>
+    <p class="desc">DeepSeek 模型的高性能、大规模推理框架，面向生产环境的吞吐与延迟优化。</p>
+    <div class="tags">
+      <span class="tag">inference</span><span class="tag">DeepSeek</span><span class="tag">LLM</span>
+    </div>
+    <div class="foot-row">
+      <div class="left-meta">
+        <span class="lang"><i style="background:#3572A5"></i>Python</span>
+        <span class="lang">许可证：Apache-2.0</span>
+      </div>
+      <div class="left-meta">
+        <a class="btn btn-primary" href="https://github.com/msliji/DeepInfer">查看仓库 →</a>
+        <a class="btn btn-ghost" href="https://github.com/deepseek-ai/DeepInfer">上游原项目</a>
+      </div>
+    </div>
+  </article>
+
+  <!-- 3 -->
+  <article class="card">
+    <div class="card-top">
+      <div class="rank">3</div>
+      <div class="card-title">
+        <h3><a href="https://github.com/msliji/anatomy">anatomy</a></h3>
+        <div class="sub">wheresryan22 / anatomy</div>
+      </div>
+      <span class="stars">★ 24.3k</span>
+    </div>
+    <p class="desc">一个 Agent 技能：把真实机器与复杂系统绘制成精细的等距插画，输出打磨过的 SVG，可选 WebGL 着色器与 3D 效果。</p>
+    <div class="tags">
+      <span class="tag">agent-skill</span><span class="tag">svg</span><span class="tag">visualization</span><span class="tag">webgl</span>
+    </div>
+    <div class="foot-row">
+      <div class="left-meta">
+        <span class="lang"><i style="background:#f1e05a"></i>JavaScript</span>
+        <span class="lang">许可证：MIT</span>
+      </div>
+      <div class="left-meta">
+        <a class="btn btn-primary" href="https://github.com/msliji/anatomy">查看仓库 →</a>
+        <a class="btn btn-ghost" href="https://github.com/wheresryan22/anatomy">上游原项目</a>
+      </div>
+    </div>
+  </article>
+
+  <section class="note">
+    <h4>📌 关于这些仓库</h4>
+    <ul>
+      <li>三个项目均为 <strong>Fork</strong>，代码著作权与署名归原作者所有，本仓库不主张任何版权。</li>
+      <li>使用、修改、分发时请遵守各项目自身的开源许可证条款。</li>
+      <li>本页仅为聚合索引，Star 数据为 2026-11-03 的快照，实时数值以上游为准。</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  数据来源 <a href="https://github.com/msliji/msliji">msliji/msliji</a> · 由 WorkBuddy 生成 · 2026-11-03
+</footer>
+
+</body>
+</html>
